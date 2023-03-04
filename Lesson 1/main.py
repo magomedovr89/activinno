@@ -105,7 +105,7 @@ def pulling():
            message = response['result'][-1]
            file_id = message['message']['photo'][-1]['file_id']
            caption = message['message']['caption']
-           user_id = message['message']['from']['id']
+           user_id = message['message']['from']['id'] 
            user_name = message['message']['from']['username']
            if user_id in ADMINS:
                requests.get(f'{BASE_URL}{TOKEN}/sendPhoto?chat_id={user_id}&photo={file_id}&caption={caption}')
