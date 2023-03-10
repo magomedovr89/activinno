@@ -7,13 +7,13 @@ from aiogram.types import ParseMode
 from aiogram.types import InlineKeyboardMarkup, \
     InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
 from aiogram.types import CallbackQuery
-from config import TOKEN
+import os
 import requests
 from database import *
 from aiogram.dispatcher.filters import Text
 
 
-bot = Bot(token=TOKEN)
+bot = Bot(token=os.environ['TOKEN_OF_WEATHER'])
 dp = Dispatcher(bot)
 
 
@@ -47,7 +47,6 @@ async def send_welcome(message: types.Message):  # Функция для обр�
                                f'где city - город, например, "Москва".'
                                f'\nТак же ты можешь написать любой регион, а я отправлю погоду в этом регионе \U000026C5', parse_mode=ParseMode.MARKDOWN)
     else:
-        print('id уже есть в базе', message.from_user.id, message.from_user.username)
         await bot.send_message(message.from_user.id, f'Привет, {user} \U0001F609!\n'
                                                      f'Я тебя помню!\n'
                                                      f'Нажми "help" для ознакомления с командами.\n'
@@ -176,7 +175,7 @@ async def send_message(message: types.Message):
                         if user_id not in [875776158]:
                             sql.execute("SELECT city FROM base WHERE id =?", (user_id,))
                             city = sql.fetchone()[0]
-                            username = sql.execute("SELECT username FROM base WHERE id =?", (user_id,))
+                            sql.execute("SELECT username FROM base WHERE id =?", (user_id,))
                             print(f'{city} - Рассылка\n{user_id} @{sql.fetchone()[0]}')
                             params = {'APPID': api_of_weather,
                                       'q': city,
