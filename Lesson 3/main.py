@@ -92,9 +92,11 @@ BASE_URL = 'https://api.telegram.org/bot'
 TOKEN = env['TOKEN']
 
 logging.basicConfig(level=logging.INFO)
+
 bot = Bot(token=TOKEN)
+
 dp = Dispatcher(bot)
-con = sqlite3.connect('telegram_db.sqlite')
+con = sqlite3.connect('../db/telegram_db.sqlite')
 cur = con.cursor()
 
 
