@@ -11,7 +11,7 @@ from os import environ as env
 
 PROXY_URL = 'http://proxy.server:3128'
 BASE_URL = 'https://api.telegram.org/bot'
-TOKEN = env['TOKEN']
+TOKEN = '6020154315:AAGTUFF_H1oZvfMsCCxnKHpHh85RJHToULs'  #env['TOKEN']
 WEATHER_API = '352c751a80237a51813f0ae93d864822' #env['WEATHER_API']
 
 logging.basicConfig(level=logging.INFO)
